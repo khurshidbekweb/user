@@ -50,7 +50,7 @@ clearBtn.addEventListener('click', (e)=>{
     clearBtn.classList.add("hidden");
 });
 
-elForm.addEventListener('input', (e)=>{    
+elForm.addEventListener('keyup', (e)=>{    
     e.preventDefault();
     let valueInp = elInp.value.toLowerCase();
     console.log(valueInp);

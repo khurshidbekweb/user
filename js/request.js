@@ -1,11 +1,11 @@
 // api
-const API = 'https://randomuser.me/api/?results=12'
+const API = 'https://randomuser.me/api/?results=9'
 
 // for leader
 const overlay = document.getElementById('overlay')
 
 // Toggelse mode
-function toggleMods(results){
+function toggleLoud(results){
     let indentfy = results;
     if(indentfy){
         overlay.classList.remove('hidden');
@@ -19,14 +19,14 @@ const getDate = (recource)=>{
         const request =new XMLHttpRequest()
         request.addEventListener('readystatechange', ()=>{
             if(request.readyState < 4){                
-                toggleMods(true);
+                toggleLoud(true);
             }else if(request.readyState ===4 && request.status===200){
                 let data = JSON.parse(request.responseText);
                 resolve(data.results);
-                toggleMods(false)
+                toggleLoud(false)
             }else if(request.readyState===4){
                 reject("Errors !!!");
-                toggleMods(false)
+                toggleLoud(false)
             }
         })
         request.open('GET', recource);
@@ -36,6 +36,8 @@ const getDate = (recource)=>{
 const reloud = ()=>{
     getDate(API).then((data)=>{
         updeaitUI(data);
+    }).catch((err)=>{
+        updeaitUI(err);
     })
 }
 document.addEventListener('DOMContentLoaded', reloud)
